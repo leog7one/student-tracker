@@ -1,5 +1,6 @@
 class ReferralsController < ApplicationController
   before_action :set_referral, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /referrals
   # GET /referrals.json
@@ -10,10 +11,14 @@ class ReferralsController < ApplicationController
   # GET /referrals/1
   # GET /referrals/1.json
   def show
+    @user = User.find(params[:id])
+    @referrals = @user.referrals
+    @student = Student.find(params[:id])
   end
 
   # GET /referrals/new
   def new
+    @student = Student.find(params[:student_id])
     @referral = Referral.new
   end
 
@@ -24,16 +29,12 @@ class ReferralsController < ApplicationController
   # POST /referrals
   # POST /referrals.json
   def create
-    @referral = Referral.new(referral_params)
+    @student = Student.find(params[:student_id])
+    @referral = @student.referrals.build(referral_params)
+    @referral.user = current_user
 
-    respond_to do |format|
       if @referral.save
-        format.html { redirect_to @referral, notice: 'Referral was successfully created.' }
-        format.json { render :show, status: :created, location: @referral }
-      else
-        format.html { render :new }
-        format.json { render json: @referral.errors, status: :unprocessable_entity }
-      end
+        redirect_to student_path(@student)
     end
   end
 

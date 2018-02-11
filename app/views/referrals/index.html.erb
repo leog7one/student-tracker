@@ -14,7 +14,7 @@
     <% @referrals.each do |referral| %>
       <tr>
         <td><%= referral.note %></td>
-        <td><%= link_to 'Show', referral %></td>
+        <td><%= link_to 'Show', student_path(@student) %></td>
         <td><%= link_to 'Edit', edit_referral_path(referral) %></td>
         <td><%= link_to 'Destroy', referral, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

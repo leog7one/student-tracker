@@ -1,0 +1,13 @@
+Welcome <%= @user.name %>!
+
+Referrals
+<br>
+<% @referrals.each do |referral| %>
+  <ul>
+    <li>
+      Created:<%= referral.created_at %>
+      Note: <%= referral.note %>
+      Student: <%= referral.student.first_name %>
+    </li>
+  </ul>
+<% end %>

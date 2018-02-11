@@ -10,13 +10,14 @@ class StudentsController < ApplicationController
   # GET /students/1
   # GET /students/1.json
   def show
+    @referrals = @student.referrals
+    @referral = Referral.new
   end
 
   # GET /students/new
   def new
     @student = Student.new
   end
-
   # GET /students/1/edit
   def edit
   end

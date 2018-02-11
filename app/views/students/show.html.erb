@@ -25,5 +25,19 @@
   <%= @student.homeroom %>
 </p>
 
+<p>Referrals:</p>
+<% @referrals.each do |referral| %>
+<ul>
+  <li>
+    Created: <%= referral.created_at %>
+    Note: <%= referral.note %>
+    By: <%= referral.user.name %>
+  </li>
+</ul>
+<% end %>
+
+<br>
+
 <%= link_to 'Edit', edit_student_path(@student) %> |
-<%= link_to 'Back', students_path %>
+<%= link_to 'Back', students_path %> |
+<%= link_to 'Add Referral', new_student_referral_path(@student) %>

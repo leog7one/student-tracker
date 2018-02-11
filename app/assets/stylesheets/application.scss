@@ -16,3 +16,188 @@
 // "bootstrap-sprockets" must be imported before "bootstrap" and "bootstrap/variables"
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
+@import "admin/application";
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+color: rgb(255, 255, 255);  /*Sets the text hover color on navbar*/
+}
+
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active >   
+ a:hover, .navbar-default .navbar-nav > .active > a:focus {
+color: white; /*BACKGROUND color for active*/
+background-color: #030033;
+}
+
+  .navbar-default {
+    background-color: #2f22dc;
+    border-color: #030033;
+}
+
+  .dropdown-menu > li > a:hover,
+   .dropdown-menu > li > a:focus {
+    color: #262626;
+   text-decoration: none;
+  background-color: #66CCFF;  /*change color of links in drop down here*/
+   }
+
+ .nav > li > a:hover,
+ .nav > li > a:focus {
+    text-decoration: none;
+    background-color: silver; /*Change rollover cell color here*/
+  }
+
+
+  .navbar-default .navbar-nav > li > a {
+   color: white; /*Change active text color here*/
+    }
+
+    .navbar-default .navbar-brand {
+    color: white;
+}
+
+body {
+  font-family: 'Titillium Web', sans-serif;
+  font-size: 14px;
+  color: #333;
+  padding-top: 70px;
+  padding-left: 15px;
+}
+
+header {
+  @extend .page-header;
+  position: relative;
+  padding-bottom: 0;
+
+  &:first-child {
+    margin-top: 20px;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    max-width: 55%;
+  }
+}
+
+ul.actions {
+	@extend .list-unstyled;
+  @extend .list-inline;
+  bottom: -2px;
+  right: 2px;
+  text-align: right;
+}
+
+a.new, 
+a.edit,
+a.delete {
+	@extend .btn;
+
+	&:before {
+		font-family: "FontAwesome";
+		padding-right: 0.5em;
+	}
+}
+
+a.new {
+	@extend .btn-success;
+
+	&:before {
+		@extend .fa-plus;
+	}
+}
+
+a.edit {
+  @extend .btn-primary;
+
+  &:before {
+    @extend .fa-pencil;
+  }
+}
+
+a.delete {
+  @extend .btn-danger;
+
+  &:before {
+    @extend .fa-trash;
+  }
+}
+
+span.upcoming, 
+span.past {
+  color:#000;
+  font-weight: bold;
+  border-radius: 3px;
+
+  &:before {
+  font-family: "FontAwesome";
+  padding: 1.5em
+  }
+}
+
+span.upcoming {
+  background-color: #12e52a;
+
+  &:before {
+  @extend .fa-check;
+  }
+}
+
+span.past {
+  background-color: #e51212;
+
+  &:before {
+  @extend .fa-close;
+  }
+}
+
+
+.alert-notice {
+  @extend .alert-success;
+}
+
+.alert-alert {
+  @extend .alert-danger;
+}
+
+.field {
+  padding-bottom: 5px;
+}
+
+element.style {
+  color: white;
+  font-size: 1.2em;
+}
+
+.devise-links {
+  padding-top: 8px;
+  text-align: -webkit-center;
+}
+
+.devise-links a {
+  color: white;
+  font-size: 1.2em;
+}
+
+input[type=file] {
+    margin: 0 auto;
+}
+
+.btn-block {
+    display: block;
+    width: 50%;
+}
+
+
+.booyah-box {
+  -moz-box-shadow: 1px 1px 2px 0 #d0d0d0;
+  -webkit-box-shadow: 1px 1px 2px 0 #d0d0d0;
+  box-shadow: 1px 1px 2px 0 #d0d0d0;
+  background: #2f22dc;
+  border: 1px solid #ccc;
+  border-color: #e4e4e4 #bebebd #bebebd #e4e4e4;
+  margin-top: 10px;
+  margin-botttom: 15px;
+  padding: 20px;
+  text-align: center;
+}

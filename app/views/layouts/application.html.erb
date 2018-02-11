@@ -4,16 +4,24 @@
     <title>StudentTracker</title>
     <%= csrf_meta_tags %>
 
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
   <%= render "layouts/nav" %>
 
-  <p class="notice"><%= notice %></p>
-  <p class="alert"><%= alert %></p>
+  <div class="container">
+ 		<% flash.each do |type, message| %>
+	<div class="alert alert-<%= type %>">
+  		<%= message %>
+	</div>
+		<% end %>
+		
+			<%= yield %>
+		
+	</div>
 
-    <%= yield %>
+<br></br>
   </body>
 </html>

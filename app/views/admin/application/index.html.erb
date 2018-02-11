@@ -6,4 +6,17 @@
       Users: <%= @users.count %>
     <% end %>
   </li>
+
+  <li>
+    <%= link_to admin_categories_path do %>
+      Categories: <%= @categories.count %>
+    <% end %>
+  </li>
+
+  <li>
+    <%= link_to admin_referrals_path do %>
+      Referrals: <%= @referrals.count %>
+    <% end %>
+  </li>
+
 </ul>

@@ -30,7 +30,7 @@
 <ul>
   <li>
     Created: <%= referral.created_at %>
-    Note: <%= referral.note %>
+    Note: <%= link_to referral.note, student_referral_path(@student, referral) %>
     By: <%= referral.user.name %>
   </li>
 </ul>

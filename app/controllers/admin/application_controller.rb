@@ -2,7 +2,9 @@ class Admin::ApplicationController < ApplicationController
   before_action :authorize_admin!
 
   def index
-  	@users = User.all
+    @users = User.all
+    @categories = Category.all
+    @referrals = Referral.all
   end
 
   private

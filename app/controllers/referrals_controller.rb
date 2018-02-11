@@ -11,9 +11,7 @@ class ReferralsController < ApplicationController
   # GET /referrals/1
   # GET /referrals/1.json
   def show
-    @user = User.find(params[:id])
-    @referrals = @user.referrals
-    @student = Student.find(params[:id])
+    @student = Student.find(params[:student_id])
   end
 
   # GET /referrals/new
@@ -24,6 +22,7 @@ class ReferralsController < ApplicationController
 
   # GET /referrals/1/edit
   def edit
+    @student = Student.find(params[:id])
   end
 
   # POST /referrals
@@ -41,9 +40,10 @@ class ReferralsController < ApplicationController
   # PATCH/PUT /referrals/1
   # PATCH/PUT /referrals/1.json
   def update
+    @student = Student.find(params[:id])
     respond_to do |format|
       if @referral.update(referral_params)
-        format.html { redirect_to @referral, notice: 'Referral was successfully updated.' }
+        format.html { redirect_to student_referral_path(@student, @referral), notice: 'Referral was successfully updated.' }
         format.json { render :show, status: :ok, location: @referral }
       else
         format.html { render :edit }

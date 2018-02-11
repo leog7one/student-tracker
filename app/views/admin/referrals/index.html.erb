@@ -1,0 +1,26 @@
+<header>
+	<h1>Referrals</h1>
+</header>
+
+<table class="table table-striped table-responsive">
+  <thead>
+    <tr>
+      <th>Teacher</th>
+      <th>Student</th>
+      <th>Referral</th>
+      <th>Created</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @referrals.each do |referral| %>
+      <tr>
+        <td><%= referral.user.name if referral.user.name %></td>
+        <td><%= referral.student.first_name  +  referral.student.last_name%></td>
+        <td><%= link_to truncate(referral.note, length: 30), student_referral_path %></td>
+        <td><%= time_format(referral.created_at) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>

@@ -2,5 +2,5 @@
 
 <%= render 'form', referral: @referral %>
 
-<%= link_to 'Show', @referral %> |
-<%= link_to 'Back', referrals_path %>
+<%= link_to 'Show', student_referral_path(@student, @referral) %> |
+<%= link_to 'Back', student_referral_path(@student, @referral) %>

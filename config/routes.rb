@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   namespace :admin do
     root 'application#index'
     resources :users, only: [:index]
-    resources :categories, except: [:show]
+    resources :categories
     resources :referrals, only: [:index]
     resources :students, only: [:index]
   end

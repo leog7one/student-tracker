@@ -1,10 +1,15 @@
 class Admin::CategoriesController < Admin::ApplicationController
 	before_action :authorize_owner, except: [:index]
-	before_action :set_category, only: [:edit, :update, :destroy]
+	before_action :set_category, only: [:edit, :update, :destroy, :show]
 
 	def index
 		@users = User.all
 		@categories = Category.order(:name)
+	end
+
+	def show
+		@categories = Category.all
+		@referrals = @category.referrals
 	end
 
 	def new

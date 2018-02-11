@@ -70,6 +70,6 @@ class ReferralsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def referral_params
-      params.require(:referral).permit(:note)
+      params.require(:referral).permit(:note, :category_id)
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180211033453) do
+ActiveRecord::Schema.define(version: 20180211211304) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20180211033453) do
     t.bigint "category_id"
     t.bigint "user_id"
     t.bigint "student_id"
+    t.datetime "occurance_date"
     t.index ["category_id"], name: "index_referrals_on_category_id"
     t.index ["student_id"], name: "index_referrals_on_student_id"
     t.index ["user_id"], name: "index_referrals_on_user_id"

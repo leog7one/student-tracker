@@ -1,8 +1,19 @@
 
 <%= simple_form_for ([:student, referral]) do |f| %>
   
+
+  <div class="field">
+    <%= f.label :occurance_date %><br>
+    <%= f.datetime_select :occurance_date, ampm: true, class: "form-control" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :category %><br>
+    <%= f.collection_select :category_id, Category.all, :id, :name, class: "form-control" %>
+  </div>
+
   <div class="field"> 
-    <%= f.input :category_id, collection: Category.all, label: "Select Category", prompt: true %>
+  <%= f.label :note %><br>
     <%= f.text_area :note, class: "form-control" %>
   </div>
   <br>

@@ -22,7 +22,7 @@ class ReferralsController < ApplicationController
 
   # GET /referrals/1/edit
   def edit
-    @student = Student.find(params[:id])
+    @student = Student.find(params[:student_id])
   end
 
   # POST /referrals
@@ -70,6 +70,6 @@ class ReferralsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def referral_params
-      params.require(:referral).permit(:note, :category_id)
+      params.require(:referral).permit(:note, :category_id, :occurance_date)
     end
 end

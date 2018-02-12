@@ -8,7 +8,7 @@ class StudentsController < ApplicationController
   def index
     search = params[:query].present? ? params[:query] :nil
       @students = if search
-        Student.search search, fields: [{homeroom: :exact}, :first_name, :last_name, :grade_level, :student_id_number], match: :word_start
+        Student.search search, fields: [{homeroom: :exact}, :first_name, :last_name, :grade_level, :student_id_number, :full_name], match: :word_start
     else
       @students = Student.all
     end

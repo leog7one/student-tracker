@@ -6,7 +6,12 @@ class StudentsController < ApplicationController
   # GET /students
   # GET /students.json
   def index
-    @students = Student.all
+    search = params[:query].present? ? params[:query] :nil
+      @students = if search
+        Student.search search, fields: [{homeroom: :exact}, :first_name, :last_name, :grade_level, :student_id_number], match: :word_start
+    else
+      @students = Student.all
+    end
   end
 
   # GET /students/1

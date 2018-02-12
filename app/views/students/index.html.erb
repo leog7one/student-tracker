@@ -2,14 +2,30 @@
   <h1>Students</h1>
   <ul class="actions">
 			<li><%= link_to 'New Student', new_student_path, class: 'new' %></li>
-
-      <%= form_tag students_upload_path, multipart: true do %>
-      <%= file_field_tag :leads %>
-      <%= submit_tag "Import Leads" %>
+      <li><%= form_tag students_upload_path, multipart: true do %></li>
+      <li><%= file_field_tag :leads %></li>
+      <li><%= submit_tag "Import Leads" %></li>
       <% end %>
-<ul>
 		</ul>
 </header>
+
+<div class="search">
+  <div class="col-sm-09">
+    <%= form_tag students_path, class: 'form-horizontal', method: :get do %>
+      <div class="form-group form-group-lg">
+        <div class="col-sm-10">
+          <%= text_field_tag :query, params[:query], placeholder: "Search", autofocus: true, class: "form-control" %>
+        </div>
+        <div class="col-sm-2">
+          <%= submit_tag "Search", class: "btn btn-default btn-lg" %>
+          <% if params[:query].present? %>
+            <%= link_to "Clear", students_path %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
 
 
 <table class='table'>

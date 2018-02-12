@@ -4,7 +4,7 @@
 			<li><%= link_to 'New Student', new_student_path, class: 'new' %></li>
       <li><%= form_tag students_upload_path, multipart: true do %></li>
       <li><%= file_field_tag :leads %></li>
-      <li><%= submit_tag "Import Leads" %></li>
+      <li><%= submit_tag "Import Students" %></li>
       <% end %>
 		</ul>
 </header>

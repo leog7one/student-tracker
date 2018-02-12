@@ -1,13 +1,30 @@
-Welcome <%= @user.name %>!
+<header>
+  <h1> <%= @user.name %> Referrals </h1>
+</header>
 
-Referrals
-<br>
-<% @referrals.each do |referral| %>
-  <ul>
-    <li>
-      Created:<%= referral.created_at %>
-      Note: <%= referral.note %>
-      Student: <%= referral.student.first_name %>
-    </li>
-  </ul>
-<% end %>
+<table class="table table-striped table-responsive">
+  <thead>
+    <tr>
+      <th>Student</th>
+      <th>Referral</th>
+      <th>Referral Type</th>
+      <th>Occurance Date</th>
+      <th>Created Date</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @referrals.each do |referral|  %>
+      <tr>
+        <td><%= referral.student.full_name %></td>
+        <td><%= link_to referral.note, student_referral_path(referral.student, referral) %></td>
+        <td><%= referral.category.name %></td>
+        <td><%= time_format(referral.occurance_date) %></td>
+        <td><%= time_format(referral.created_at) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+

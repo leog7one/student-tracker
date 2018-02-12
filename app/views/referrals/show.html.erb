@@ -1,10 +1,39 @@
-Student: <%= @referral.student.first_name %>
-<br>
-Teacher: <%= @referral.user.name %>
+<header>
+  <h1>Referral Info</h1>
+</header>
+
+
+<p>
+  <strong>Teacher Name:</strong>
+  <%= @referral.user.name %>
+</p>
+
+<p>
+  <strong>Student Name:</strong>
+  <%= @student.full_name %>
+</p>
+
+<p>
+  <strong>Student id number:</strong>
+  <%= @student.student_id_number %>
+</p>
+
+<p>
+  <strong>Grade level:</strong>
+  <%= @student.grade_level %>
+</p>
+
+<p>
+  <strong>Homeroom:</strong>
+  <%= @student.homeroom %>
+
+  <p>
+  <strong>Referral Type:</strong>
+  <%= @referral.category.name %>
+</p>
 
 <p>
   <strong>Note:</strong>
-  
   <%= @referral.note %>
 </p>
 

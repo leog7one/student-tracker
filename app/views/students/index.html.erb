@@ -2,6 +2,12 @@
   <h1>Students</h1>
   <ul class="actions">
 			<li><%= link_to 'New Student', new_student_path, class: 'new' %></li>
+
+      <%= form_tag students_upload_path, multipart: true do %>
+      <%= file_field_tag :leads %>
+      <%= submit_tag "Import Leads" %>
+      <% end %>
+<ul>
 		</ul>
 </header>
 

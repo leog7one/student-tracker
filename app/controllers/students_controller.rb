@@ -1,4 +1,6 @@
 class StudentsController < ApplicationController
+  require 'csv'
+
   before_action :set_student, only: [:show, :edit, :update, :destroy]
 
   # GET /students
@@ -12,6 +14,13 @@ class StudentsController < ApplicationController
   def show
     @referrals = @student.referrals
     @referral = Referral.new
+  end
+
+  def upload
+    CSV.foreach(params[:leads].path, headers: true) do |lead|
+      Student.create(first_name: lead[0], last_name: lead[1], student_id_number: lead[2], homeroom: lead[3], grade_level: lead[4])
+    end
+    redirect_to students_path
   end
 
   # GET /students/new

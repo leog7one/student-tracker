@@ -12,6 +12,11 @@ class StudentsController < ApplicationController
     else
       @students = Student.all
     end
+    respond_to do |format|
+      format.json
+      format.js
+      format.html
+    end
   end
 
   # GET /students/1

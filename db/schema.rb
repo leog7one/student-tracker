@@ -10,13 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180212000356) do
+ActiveRecord::Schema.define(version: 20180219024955) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "categories", force: :cascade do |t|
     t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "homerooms", force: :cascade do |t|
+    t.string "room_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -29,7 +35,9 @@ ActiveRecord::Schema.define(version: 20180212000356) do
     t.bigint "user_id"
     t.bigint "student_id"
     t.datetime "occurance_date"
+    t.bigint "homeroom_id"
     t.index ["category_id"], name: "index_referrals_on_category_id"
+    t.index ["homeroom_id"], name: "index_referrals_on_homeroom_id"
     t.index ["student_id"], name: "index_referrals_on_student_id"
     t.index ["user_id"], name: "index_referrals_on_user_id"
   end
@@ -66,6 +74,7 @@ ActiveRecord::Schema.define(version: 20180212000356) do
   end
 
   add_foreign_key "referrals", "categories"
+  add_foreign_key "referrals", "homerooms"
   add_foreign_key "referrals", "students"
   add_foreign_key "referrals", "users"
   add_foreign_key "students", "users"

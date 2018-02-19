@@ -1,0 +1,2 @@
+class Homeroom < ApplicationRecord
+end

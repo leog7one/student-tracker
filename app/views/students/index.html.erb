@@ -13,6 +13,7 @@
   <thead>
     <tr>
       <th style="display:none">Full Name</th>
+      <th style="display:none">Homeroom</th>
       <th>First name</th>
       <th>Last name</th>
       <th>Student ID Number</th>
@@ -26,11 +27,13 @@
     <% @students.each do |student| %>
       <tr>
         <td style="display:none"><%= student.full_name.downcase%></td>
+        <td style="display:none"><%= student.homeroom.to_s.downcase%></td>
         <td><%= student.first_name %></td>
         <td><%= student.last_name %></td>
         <td><%= student.student_id_number %></td>
         <td><%= student.grade_level %></td>
         <td><%= student.homeroom %></td>
+        <td><%= link_to 'Add Referral', new_student_referral_path(student) %></td>
         <td><%= link_to 'Show', student %></td>
         <td><%= link_to 'Edit', edit_student_path(student) %></td>
         <td><%= link_to 'Destroy', student, method: :delete, data: { confirm: 'Are you sure?' } %></td>

@@ -1,9 +1,26 @@
-<h1>Teachers:</h1>
+<header>
+  <h1>Teachers:</h1>
+</header>
 
-<% @users.each do |user| %>
-  <ul>
-    <li>
-      <%= link_to user.name, user_path(user)  %>
-    </li>
-  </ul>
-<% end %>
+<table class='search-table table search'>
+  <thead>
+    <tr>
+      <th style="display:none">Full Name</th>
+      <th>Teacher Name</th>
+      <th>Number of Referrals</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td style="display:none"><%= user.name.downcase%></td>
+        <td><%= link_to user.name, user_path(user) %></td>
+        <td><%= user.referrals.count %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

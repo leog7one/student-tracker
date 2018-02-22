@@ -16,8 +16,11 @@ class Student < ApplicationRecord
   }
   end
   
+  belongs_to :homeroom, required: false
   has_many :users
   has_many :referrals, dependent: :destroy
+
+  accepts_nested_attributes_for :homeroom
 
   
 end

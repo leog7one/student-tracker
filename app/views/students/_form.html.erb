@@ -32,8 +32,10 @@
   </div>
 
   <div class="field">
-    <%= form.label :homeroom %>
-    <%= form.text_field :homeroom, id: :student_homeroom %>
+    <%= form.fields_for :homerooms do |hr| %>
+      <%= hr.label :room_number %>
+      <%= hr.text_field :room_number %>
+    <% end %>
   </div>
 
   <div class="actions">

@@ -36,6 +36,7 @@ class StudentsController < ApplicationController
   # GET /students/new
   def new
     @student = Student.new
+    @homeroom = @student.build_homeroom(homeroom_params)
   end
   # GET /students/1/edit
   def edit
@@ -45,6 +46,7 @@ class StudentsController < ApplicationController
   # POST /students.json
   def create
     @student = Student.new(student_params)
+    @homeroom = @student.build_homeroom(homeroom_params)
 
     respond_to do |format|
       if @student.save
@@ -90,5 +92,9 @@ class StudentsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
       params.require(:student).permit(:first_name, :last_name, :student_id_number, :grade_level, :homeroom)
+    end
+    
+    def homeroom_params
+      params.permit(:room_number)
     end
 end

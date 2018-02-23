@@ -6,12 +6,8 @@ class StudentsController < ApplicationController
   # GET /students
   # GET /students.json
   def index
-    search = params[:query].present? ? params[:query] :nil
-      @students = if search
-        Student.search search, fields: [{homeroom: :exact}, :first_name, :last_name, :grade_level, :student_id_number, :full_name], match: :word_start
-    else
-      @students = Student.all
-    end
+    @students = Student.all
+
     respond_to do |format|
       format.json
       format.js
@@ -28,7 +24,7 @@ class StudentsController < ApplicationController
 
   def upload
     CSV.foreach(params[:leads].path, headers: true) do |lead|
-      Student.create(first_name: lead[0], last_name: lead[1], student_id_number: lead[2], homeroom: lead[3], grade_level: lead[4])
+      Student.create(first_name: lead[0], last_name: lead[1], student_id_number: lead[2], grade_level: lead[3],:homeroom_attributes => {:room_number => lead[4]})
     end
     redirect_to students_path
   end
@@ -36,7 +32,7 @@ class StudentsController < ApplicationController
   # GET /students/new
   def new
     @student = Student.new
-    @homeroom = @student.build_homeroom(homeroom_params)
+    @homeroom = @student.build_homeroom
   end
   # GET /students/1/edit
   def edit
@@ -46,7 +42,7 @@ class StudentsController < ApplicationController
   # POST /students.json
   def create
     @student = Student.new(student_params)
-    @homeroom = @student.build_homeroom(homeroom_params)
+    # @homeroom = @student.build_homeroom(homeroom_params)
 
     respond_to do |format|
       if @student.save
@@ -91,10 +87,11 @@ class StudentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params
-      params.require(:student).permit(:first_name, :last_name, :student_id_number, :grade_level, :homeroom)
+      params.require(:student).permit!
+      #(:first_name, :last_name, :student_id_number, :grade_level, homeroom_attributes: [:homeroom_id, :room_number])
     end
     
-    def homeroom_params
-      params.permit(:room_number)
-    end
+    # def homeroom_params
+    #   params.permit(:room_number)
+    # end
 end

@@ -1,4 +1,4 @@
-<%= form_with(model: student, local: true) do |form| %>
+<%= simple_form_for @student do |form| %>
   <% if student.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(student.errors.count, "error") %> prohibited this student from being saved:</h2>
@@ -32,9 +32,10 @@
   </div>
 
   <div class="field">
-    <%= form.fields_for :homerooms do |hr| %>
+    <%= form.simple_fields_for :homeroom do |hr| %>
       <%= hr.label :room_number %>
       <%= hr.text_field :room_number %>
+
     <% end %>
   </div>
 

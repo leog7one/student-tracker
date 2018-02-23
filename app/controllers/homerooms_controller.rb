@@ -2,10 +2,31 @@ class HomeroomsController < ApplicationController
 
   def new
     @homeroom = Homeroom.new
-    @student = @homeroom.students.build(student_params)
+
   end
 
-  def homeroom_params
-    params.require(:homeroom).permit(:room_number, students_attributes:[:student_id, :first_name, :last_name, :student_id_number, :grade_level ])
+  def create
+    @homeroom = Homeroom.new(homeroom_params)
+
+    respond_to do |format|
+      if @homeroom.save
+        format.html { redirect_to @student, notice: 'Student was successfully created.' }
+        format.json { render :show, status: :created, location: @student }
+      else
+        format.html { render :new }
+        format.json { render json: @student.errors, status: :unprocessable_entity }
+      end
+    end
   end
+
+  private
+
+  def homeroom_params
+    params.require(:homeroom).permit!
+  end
+
+  # def student_params
+  #   params.require(:student).permit!
+  #   #(:first_name, :last_name, :student_id_number, :grade_level, homeroom_attributes:[:room_number])
+  # end
 end

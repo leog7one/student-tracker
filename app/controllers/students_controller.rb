@@ -24,7 +24,8 @@ class StudentsController < ApplicationController
 
   def upload
     CSV.foreach(params[:leads].path, headers: true) do |lead|
-      Student.create(first_name: lead[0], last_name: lead[1], student_id_number: lead[2], grade_level: lead[3],:homeroom_attributes => {:room_number => lead[4]})
+        homeroom = Homeroom.find_or_create_by(room_number: lead[4])
+        student = Student.create(first_name: lead[0], last_name: lead[1], student_id_number: lead[2], grade_level: lead[3], homeroom_id: homeroom.id)
     end
     redirect_to students_path
   end

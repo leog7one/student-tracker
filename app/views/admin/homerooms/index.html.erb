@@ -1,0 +1,24 @@
+<header>
+	<h1>Homerooms</h1>
+</header>
+
+<table class="table table-striped table-responsive">
+  <thead>
+    <tr>
+      <th>Homeroom</th>
+      <th>Number of Students</th>
+      <th>Number of Referrals</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @homerooms.each do |homeroom| %>
+      <tr>
+        <td><%= link_to homeroom.room_number, admin_homeroom_path(homeroom) %></td>
+        <td><%= link_to homeroom.students.count, admin_homeroom_path(homeroom) %></td>
+        <td><%= homeroom.referrals.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>

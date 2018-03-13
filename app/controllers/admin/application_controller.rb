@@ -5,6 +5,7 @@ class Admin::ApplicationController < ApplicationController
     @users = User.all
     @categories = Category.all
     @referrals = Referral.all
+    @homerooms = Homeroom.all
   end
 
   private

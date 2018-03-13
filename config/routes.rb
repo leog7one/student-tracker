@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :categories
     resources :referrals, only: [:index]
     resources :students, only: [:index]
+    resources :homerooms
   end
 
   resources :categories

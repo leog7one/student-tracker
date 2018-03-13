@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th>Student</th>
+      <th>Homeroom</th>
       <th>Referral</th>
       <th>Referral Type</th>
       <th>Occurance Date</th>
@@ -18,6 +19,7 @@
     <% @referrals.each do |referral|  %>
       <tr>
         <td><%= referral.student.full_name %></td>
+        <td><%= referral.student.homeroom.room_number %></td>
         <td><%= link_to referral.note, student_referral_path(referral.student, referral) %></td>
         <td><%= referral.category.name %></td>
         <td><%= time_format(referral.occurance_date) %></td>

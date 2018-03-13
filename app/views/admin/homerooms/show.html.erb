@@ -1,0 +1,23 @@
+<header>
+	<h1><%= @homeroom.room_number %></h1>
+  <h2> Total Referrals: <%= @homeroom.referrals.count %> </h2>
+</header>
+
+<table class="table table-striped table-responsive">
+  <thead>
+    <tr>
+      <th>Student Name</th>
+      <th>Number of Referrals</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= link_to student.full_name, student_path(student) %></td>
+        <td><%= student.referrals.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>

@@ -42,7 +42,9 @@ class StudentsController < ApplicationController
   # POST /students
   # POST /students.json
   def create
+    
     @student = Student.new(student_params)
+    @student.homeroom = Homeroom.find_or_create_by(params[:room_number])
     # @homeroom = @student.build_homeroom(homeroom_params)
 
     respond_to do |format|

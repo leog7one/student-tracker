@@ -6,6 +6,7 @@ class Admin::ApplicationController < ApplicationController
     @categories = Category.all
     @referrals = Referral.all
     @homerooms = Homeroom.all
+    @grade_levels = GradeLevel.all
   end
 
   private

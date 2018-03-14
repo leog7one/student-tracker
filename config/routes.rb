@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   
+  resources :grade_levels
   resources :homerooms
   namespace :admin do
     root 'application#index'
@@ -9,6 +10,7 @@ Rails.application.routes.draw do
     resources :referrals, only: [:index]
     resources :students, only: [:index]
     resources :homerooms
+    resources :grade_levels
   end
 
   resources :categories

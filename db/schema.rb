@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180223042925) do
+ActiveRecord::Schema.define(version: 20180314215503) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,11 +21,25 @@ ActiveRecord::Schema.define(version: 20180223042925) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "grade_levels", force: :cascade do |t|
+    t.string "grade"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "homeroom_id"
+    t.bigint "student_id"
+    t.bigint "referral_id"
+    t.index ["homeroom_id"], name: "index_grade_levels_on_homeroom_id"
+    t.index ["referral_id"], name: "index_grade_levels_on_referral_id"
+    t.index ["student_id"], name: "index_grade_levels_on_student_id"
+  end
+
   create_table "homerooms", force: :cascade do |t|
     t.string "room_number"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "student_id"
+    t.bigint "grade_level_id"
+    t.index ["grade_level_id"], name: "index_homerooms_on_grade_level_id"
     t.index ["student_id"], name: "index_homerooms_on_student_id"
   end
 
@@ -38,7 +52,9 @@ ActiveRecord::Schema.define(version: 20180223042925) do
     t.bigint "student_id"
     t.datetime "occurance_date"
     t.bigint "homeroom_id"
+    t.bigint "grade_level_id"
     t.index ["category_id"], name: "index_referrals_on_category_id"
+    t.index ["grade_level_id"], name: "index_referrals_on_grade_level_id"
     t.index ["homeroom_id"], name: "index_referrals_on_homeroom_id"
     t.index ["student_id"], name: "index_referrals_on_student_id"
     t.index ["user_id"], name: "index_referrals_on_user_id"
@@ -48,11 +64,12 @@ ActiveRecord::Schema.define(version: 20180223042925) do
     t.string "first_name"
     t.string "last_name"
     t.integer "student_id_number"
-    t.string "grade_level"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "homeroom_id"
+    t.bigint "grade_level_id"
+    t.index ["grade_level_id"], name: "index_students_on_grade_level_id"
     t.index ["homeroom_id"], name: "index_students_on_homeroom_id"
     t.index ["user_id"], name: "index_students_on_user_id"
   end
@@ -76,11 +93,17 @@ ActiveRecord::Schema.define(version: 20180223042925) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "grade_levels", "homerooms"
+  add_foreign_key "grade_levels", "referrals"
+  add_foreign_key "grade_levels", "students"
+  add_foreign_key "homerooms", "grade_levels"
   add_foreign_key "homerooms", "students"
   add_foreign_key "referrals", "categories"
+  add_foreign_key "referrals", "grade_levels"
   add_foreign_key "referrals", "homerooms"
   add_foreign_key "referrals", "students"
   add_foreign_key "referrals", "users"
+  add_foreign_key "students", "grade_levels"
   add_foreign_key "students", "homerooms"
   add_foreign_key "students", "users"
 end

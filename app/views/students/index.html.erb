@@ -31,7 +31,7 @@
         <td><%= student.first_name %></td>
         <td><%= student.last_name %></td>
         <td><%= student.student_id_number %></td>
-        <td><%= student.grade_level %></td>
+        <td><%= student.grade_level.grade %></td>
         <td><%= student.homeroom.room_number %></td>
         <td><%= link_to 'Add Referral', new_student_referral_path(student) %></td>
         <td><%= link_to 'Show', student %></td>

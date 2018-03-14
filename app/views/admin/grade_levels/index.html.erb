@@ -1,0 +1,26 @@
+<header>
+	<h1>Grade Levels</h1>
+</header>
+
+<table class="table table-striped table-responsive">
+  <thead>
+    <tr>
+      <th>Grade Level</th>
+      <th>Number of Homerooms</th>
+      <th>Number of Students</th>
+      <th>Number of Referrals</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @grade_levels.each do |grade_level| %>
+      <tr>
+        <td><%= link_to grade_level.grade, grade_level_path(grade_level) %></td>
+        <td><%= link_to grade_level.homerooms.count%></td>
+        <td><%= grade_level.students.count %></td>
+        <td><%= grade_level.referrals.count %></td>
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>

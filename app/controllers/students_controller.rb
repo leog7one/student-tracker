@@ -24,8 +24,9 @@ class StudentsController < ApplicationController
 
   def upload
     CSV.foreach(params[:leads].path, headers: true) do |lead|
-        homeroom = Homeroom.find_or_create_by(room_number: lead[4])
-        student = Student.create(first_name: lead[0], last_name: lead[1], student_id_number: lead[2], grade_level: lead[3], homeroom_id: homeroom.id)
+        grade_level = GradeLevel.find_or_create_by(grade: lead[3])
+        homeroom = Homeroom.find_or_create_by(room_number: lead[4], grade_level_id: grade_level.id)
+        student = Student.create(first_name: lead[0], last_name: lead[1], student_id_number: lead[2], grade_level_id: grade_level.id, homeroom_id: homeroom.id)
     end
     redirect_to students_path
   end
@@ -34,6 +35,7 @@ class StudentsController < ApplicationController
   def new
     @student = Student.new
     @homeroom = @student.build_homeroom
+
   end
   # GET /students/1/edit
   def edit
@@ -45,6 +47,7 @@ class StudentsController < ApplicationController
     
     @student = Student.new(student_params)
     @student.homeroom = Homeroom.find_or_create_by(params[:room_number])
+    @student.grade_level = GradeLevel.find_or_create_by(params[:grade])
     # @homeroom = @student.build_homeroom(homeroom_params)
 
     respond_to do |format|

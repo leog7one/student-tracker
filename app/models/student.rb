@@ -17,6 +17,7 @@ class Student < ApplicationRecord
   # end
   
   belongs_to :homeroom, required: false, dependent: :destroy
+  belongs_to :grade_level
   has_many :users
   has_many :referrals, dependent: :destroy
   

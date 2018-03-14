@@ -27,15 +27,16 @@
   </div>
 
   <div class="field">
-    <%= form.label :grade_level %>
-    <%= form.text_field :grade_level, id: :student_grade_level %>
+    <%= form.simple_fields_for :grdae_level do |hr| %>
+      <%= hr.label :grade %>
+      <%= hr.text_field :grade %>
+    <% end %>
   </div>
 
   <div class="field">
     <%= form.simple_fields_for :homeroom do |hr| %>
       <%= hr.label :room_number %>
       <%= hr.text_field :room_number %>
-
     <% end %>
   </div>
 

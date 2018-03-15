@@ -15,8 +15,8 @@
   <tbody>
     <% @grade_levels.each do |grade_level| %>
       <tr>
-        <td><%= link_to grade_level.grade, grade_level_path(grade_level) %></td>
-        <td><%= link_to grade_level.homerooms.count%></td>
+        <td><%= link_to grade_level.grade, admin_grade_level_path(grade_level) %></td>
+        <td><%= link_to grade_level.homerooms.count, admin_grade_level_path(grade_level)%></td>
         <td><%= grade_level.students.count %></td>
         <td><%= grade_level.referrals.count %></td>
       </tr>

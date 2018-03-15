@@ -18,10 +18,10 @@
   <tbody>
     <% @referrals.each do |referral|  %>
       <tr>
-        <td><%= referral.student.full_name %></td>
-        <td><%= referral.student.homeroom.room_number %></td>
+        <td><%= link_to referral.student.full_name, student_path(referral.student) %></td>
+        <td><%= link_to referral.student.homeroom.room_number, admin_homeroom_path(referral.student.homeroom) %></td>
         <td><%= link_to referral.note, student_referral_path(referral.student, referral) %></td>
-        <td><%= referral.category.name %></td>
+        <td><%= link_to referral.category.name, admin_category_path(referral.category) %></td>
         <td><%= time_format(referral.occurance_date) %></td>
         <td><%= time_format(referral.created_at) %></td>
       </tr>

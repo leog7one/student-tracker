@@ -2,6 +2,8 @@ class StudentsController < ApplicationController
   require 'csv'
 
   before_action :set_student, only: [:show, :edit, :update, :destroy]
+  # before_action :set_grade_level, only: [:edit, :update, :destroy]
+  # before_action :set_homeroom, only: [:edit, :update, :destroy]
 
   # GET /students
   # GET /students.json
@@ -35,8 +37,9 @@ class StudentsController < ApplicationController
   def new
     @student = Student.new
     @homeroom = @student.build_homeroom
-
+    @grade_level = @student.build_grade_level
   end
+
   # GET /students/1/edit
   def edit
   end
@@ -90,6 +93,14 @@ class StudentsController < ApplicationController
     def set_student
       @student = Student.find(params[:id])
     end
+
+    # def set_grade_level
+    #   @grade_level = GradeLevel.find(params[:grade])
+    # end
+
+    # def set_homeroom
+    #   @homeroom = Homeroom.find(params[:homeroom_id])
+    # end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def student_params

@@ -1,12 +1,12 @@
 <header>
-	<h1>Homerooms</h1>
+	<h1>Grade Level: <%= @grade_level.grade %></h1>
+  <h2> Total Referrals: <%= @grade_level.referrals.count %> </h2>
 </header>
 
 <table class="table table-striped table-responsive">
   <thead>
     <tr>
       <th>Homeroom</th>
-      <th>Grade Level</th>
       <th>Number of Students</th>
       <th>Number of Referrals</th>
     </tr>
@@ -16,8 +16,7 @@
     <% @homerooms.each do |homeroom| %>
       <tr>
         <td><%= link_to homeroom.room_number, admin_homeroom_path(homeroom) %></td>
-        <td><%= link_to homeroom.grade_level.grade, admin_grade_level_path(homeroom) %></td>
-        <td><%= link_to homeroom.students.count, admin_homeroom_path(homeroom) %></td>
+        <td><%= homeroom.students.count %></td>
         <td><%= homeroom.referrals.count %></td>
       </tr>
     <% end %>

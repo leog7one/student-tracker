@@ -3,6 +3,7 @@ class Admin::HomeroomsController < ApplicationController
     @homerooms = Homeroom.all
     @referrals = Referral.all
     @students = Student.all
+    @grade_levels = GradeLevel.all
   end
 
   def show

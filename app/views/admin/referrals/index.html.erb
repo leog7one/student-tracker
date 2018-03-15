@@ -7,6 +7,7 @@
     <tr>
       <th>Teacher</th>
       <th>Student</th>
+      <th>Homeroom</th>
       <th>Referral</th>
       <th>Created</th>
     </tr>
@@ -15,8 +16,9 @@
   <tbody>
     <% @referrals.each do |referral| %>
       <tr>
-        <td><%= referral.user.name if referral.user.name %></td>
-        <td><%= referral.student.full_name%></td>
+        <td><%= link_to referral.user.name, user_path(referral.user)  %></td>
+        <td><%= link_to referral.student.full_name, student_path(referral.student)%></td>
+        <td><%= link_to referral.student.homeroom.room_number, admin_homeroom_path(referral.student.homeroom)%></td>
         <td><%= link_to truncate(referral.note, length: 30), student_referral_path(referral.student, referral) %></td>
         <td><%= time_format(referral.created_at) %></td>
       </tr>

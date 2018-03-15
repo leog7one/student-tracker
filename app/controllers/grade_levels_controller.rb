@@ -5,7 +5,7 @@ class GradeLevelsController < ApplicationController
   end
 
   def create
-    @grade_level = GradeLevel.new(homeroom_params)
+    @grade_level = GradeLevel.new(grade_level_params)
 
     respond_to do |format|
       if @grade_level.save

@@ -22,5 +22,6 @@ class Student < ApplicationRecord
   has_many :referrals, dependent: :destroy
   
   accepts_nested_attributes_for :homeroom
+  accepts_nested_attributes_for :grade_level
 
 end

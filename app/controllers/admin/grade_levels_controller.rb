@@ -11,7 +11,7 @@ class Admin::GradeLevelsController < ApplicationController
     @grade_level = GradeLevel.find(params[:id])
     @homerooms = @grade_level.homerooms
     @homeroom = Homeroom.find(params[:id])
-    @students = @homeroom.students
+    @students = @grade_level.students
   end
 
 end

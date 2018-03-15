@@ -9,6 +9,7 @@
       <th>Student</th>
       <th>Homeroom</th>
       <th>Referral</th>
+      <th>Occurred</th>
       <th>Created</th>
     </tr>
   </thead>
@@ -20,6 +21,7 @@
         <td><%= link_to referral.student.full_name, student_path(referral.student)%></td>
         <td><%= link_to referral.student.homeroom.room_number, admin_homeroom_path(referral.student.homeroom)%></td>
         <td><%= link_to truncate(referral.note, length: 30), student_referral_path(referral.student, referral) %></td>
+        <td><%= time_format(referral.occurance_date) %></td>
         <td><%= time_format(referral.created_at) %></td>
       </tr>
     <% end %>

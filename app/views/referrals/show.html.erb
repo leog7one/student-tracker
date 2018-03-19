@@ -27,9 +27,14 @@
   <strong>Homeroom:</strong>
   <%= @student.homeroom.room_number %>
 
-  <p>
+<p>
   <strong>Referral Type:</strong>
   <%= @referral.category.name %>
+</p>
+
+  <p>
+  <strong>Referral Date:</strong>
+  <%= time_format(@referral.occurance_date) %>
 </p>
 
 <p>

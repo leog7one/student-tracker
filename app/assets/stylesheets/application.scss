@@ -201,3 +201,10 @@ input[type=file] {
   padding: 20px;
   text-align: center;
 }
+
+@media print {
+  a[href]:after {
+    content: none !important;
+    // use important only if you are not able to override it by normal styling 
+  }
+} 
